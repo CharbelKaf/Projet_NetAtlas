@@ -1,0 +1,188 @@
+﻿@page
+@model RegisterModel
+@{
+	ViewData["Title"] = "Register";
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head -->
+<!-- Mirrored from offsetcode.com/themes/messenger/2.1.0/signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Feb 2022 13:21:41 GMT -->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, shrink-to-fit=no, viewport-fit=cover">
+	<title>Messenger - 2.0.1</title>
+
+	<!-- Font -->
+	<link rel="preconnect" href="https://fonts.gstatic.com/">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700" rel="stylesheet">
+
+	<!-- Template CSS -->
+	<link rel="stylesheet" href="~/lib/assets/css/template.bundle.css">
+	<link rel="stylesheet" href="~/lib/assets/css/template.dark.bundle.css" media="(prefers-color-scheme: dark)">
+
+	<style>
+		.bd-placeholder-img {
+			font-size: 1.125rem;
+			text-anchor: middle;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+		}
+
+		.cover-container {
+			max-width: 42em;
+		}
+
+
+		/*
+																																						 * Header
+																																						 */
+
+		.nav-masthead .nav-link {
+			padding: .25rem 0;
+			font-weight: 700;
+			color: rgba(255, 255, 255, .5);
+			background-color: transparent;
+			border-bottom: .25rem solid transparent;
+		}
+
+			.nav-masthead .nav-link:hover,
+			.nav-masthead .nav-link:focus {
+				border-bottom-color: rgba(255, 255, 255, .25);
+			}
+
+			.nav-masthead .nav-link + .nav-link {
+				margin-left: 1rem;
+			}
+
+		.nav-masthead .active {
+			color: #fff;
+			border-bottom-color: #fff;
+		}
+
+
+		/*
+																																						 * Globals
+																																						 */
+
+
+		/* Custom default button */
+		.btn-secondary,
+		.btn-secondary:hover,
+		.btn-secondary:focus {
+			color: #333;
+			text-shadow: none; /* Prevent inheritance from `body` */
+		}
+
+	</style>
+
+</head>
+<body class="d-flex h-100 text-center overflow-auto text-white bg-dark">
+	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+		<header class="mb-auto">
+			<div>
+				<h3 class="float-md-start mb-0">NetAtlas</h3>
+				<nav class="nav nav-masthead justify-content-center float-md-end">
+					<a class="nav-link text-dark" aria-current="page" asp-area="" asp-page="~/Views/Home/Index">Accueil</a>
+					<a class="nav-link active " id="login" asp-area="Identity" asp-page="/Account/Login">Connexion</a>
+					<a class="nav-link" href="#">Contact</a>
+				</nav>
+			</div>
+		</header>
+		<main>
+			<div class="container">
+				<div class="row align-items-center justify-content-center min-vh-100 gx-0">
+					<div class="col-12 col-md-9 col-lg-8">
+						<div class="card card-shadow border-0">
+							<div class="card-body">
+
+								<form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+									<div class="row g-6">
+
+										<div class="col-12">
+
+											<div class="text-center">
+												<h2>Creer un compte</h2>
+											</div>
+										</div>
+
+										<hr />
+
+										<div class="col-12">
+											<div class="form-floating">
+												<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+											</div>
+										</div>
+
+										<div class="form-floating">
+											<input asp-for="Input.Email" type="email" placeholder="Adresse e-mail" id="signup-email" class="form-control" autocomplete="username" aria-required="true" />
+											<label asp-for="Input.Email" class="control-label" for="signup-email">Adresse e-mail</label>
+											<span asp-validation-for="Input.Email" class="text-danger"></span>
+										</div>
+
+										<div class="form-floating">
+											<input asp-for="Input.Password" type="password" placeholder="Mot de passe" id="signup-password" class="form-control" autocomplete="new-password" aria-required="true" />
+											<label asp-for="Input.Password" class="control-label" for="signup-password">Mot de passe</label>
+											<span asp-validation-for="Input.Password" class="text-danger"></span>
+										</div>
+
+										<div class="form-floating">
+											<input asp-for="Input.ConfirmPassword" class="form-control" type="password" placeholder="Confirmer mot de passe" autocomplete="new-password" aria-required="true" />
+											<label asp-for="Input.ConfirmPassword">Confirmer mot de passe</label>
+											<span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+										</div>
+
+										<button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Enregistrer</button>
+									</div>
+
+								</form>
+								<hr />
+							</div>
+						</div>
+						<!-- Text -->
+						<div class="text-center mt-5">
+							<p>
+								Vous avez deja un compte ?
+								<a id="forgot-password" asp-page="./Login">Se connecter</a>
+							</p>
+						</div>
+
+
+						@{
+							if ((Model.ExternalLogins?.Count ?? 0) != 0)
+							{
+								<form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+									<div>
+										<p>
+											@foreach (var provider in Model.ExternalLogins)
+											{
+												<button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+											}
+										</p>
+									</div>
+								</form>
+							}
+						}
+
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer class="mt-auto text-white-50 border-top footer text-muted">
+			<div class="container">
+				&copy; 2022  - <a style="color:#FFF;" asp-area="" asp-controller="Home" asp-action="index">NetAtlas</a>
+			</div>
+		</footer>
+	</div>
+
+
+	<script src="~/lib/assets/js/vendor.js"></script>
+	<script src="~/lib/assets/js/template.js"></script>
+</body>
+</html>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}

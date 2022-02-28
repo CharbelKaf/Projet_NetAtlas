@@ -1,0 +1,156 @@
+﻿@page
+@model ResendEmailConfirmationModel
+@{
+	ViewData["Title"] = "Resend email confirmation";
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head -->
+<!-- Mirrored from offsetcode.com/themes/messenger/2.1.0/signin.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Feb 2022 13:21:41 GMT -->
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, shrink-to-fit=no, viewport-fit=cover">
+	<title>Messenger - 2.0.1</title>
+
+	<!-- Font -->
+	<link rel="preconnect" href="https://fonts.gstatic.com/">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700" rel="stylesheet">
+
+	<!-- Template CSS -->
+	<link rel="stylesheet" href="~/lib/assets/css/template.bundle.css">
+	<link rel="stylesheet" href="~/lib/assets/css/template.dark.bundle.css" media="(prefers-color-scheme: dark)">
+
+	<style>
+		.bd-placeholder-img {
+			font-size: 1.125rem;
+			text-anchor: middle;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+		}
+
+		.cover-container {
+			max-width: 42em;
+		}
+
+
+		/*
+																																						 * Header
+																																						 */
+
+		.nav-masthead .nav-link {
+			padding: .25rem 0;
+			font-weight: 700;
+			color: rgba(255, 255, 255, .5);
+			background-color: transparent;
+			border-bottom: .25rem solid transparent;
+		}
+
+			.nav-masthead .nav-link:hover,
+			.nav-masthead .nav-link:focus {
+				border-bottom-color: rgba(255, 255, 255, .25);
+			}
+
+			.nav-masthead .nav-link + .nav-link {
+				margin-left: 1rem;
+			}
+
+		.nav-masthead .active {
+			color: #fff;
+			border-bottom-color: #fff;
+		}
+
+
+		/*
+																																						 * Globals
+																																						 */
+
+
+		/* Custom default button */
+		.btn-secondary,
+		.btn-secondary:hover,
+		.btn-secondary:focus {
+			color: #333;
+			text-shadow: none; /* Prevent inheritance from `body` */
+		}
+
+	</style>
+
+</head>
+<body class="d-flex h-100 text-center overflow-auto text-white bg-dark">
+	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+		<header class="mb-auto">
+			<div>
+				<h3 class="float-md-start mb-0">NetAtlas</h3>
+				<nav class="nav nav-masthead justify-content-center float-md-end">
+					<a class="nav-link text-dark" aria-current="page" asp-area="" asp-page="~/Views/Home/Index">Accueil</a>
+					<a class="nav-link active " id="login" asp-area="Identity" asp-page="/Account/Login">Connexion</a>
+					<a class="nav-link" href="#">Contact</a>
+				</nav>
+			</div>
+		</header>
+		<main>
+			<div class="container">
+				<div class="row align-items-center justify-content-center min-vh-100 gx-0">
+					<div class="col-12 col-md-9 col-lg-8">
+						<div class="card card-shadow border-0">
+							<div class="card-body">
+
+
+								<form method="post">
+									<div class="row g-6">
+										<div class="col-12">
+											<div class="text-center">
+
+												<h2 class="fw-bold mb-2">Renvoyer l'email de confirmation !</h2>
+											</div>
+										</div>
+
+										<div class="col-12">
+											<div class="form-floating">
+												<div asp-validation-summary="All" class="text-danger"></div>
+											</div>
+										</div>
+
+										<div class="col-12">
+											<div class="form-floating">
+												<input asp-for="Input.Email" type="email" id="resetpassword-email" placeholder="Adresse e-mail" class="form-control" autocomplete="username" aria-required="true" />
+												<label asp-for="Input.Email" class="form-label">Adresse e-mail</label>
+												<span asp-validation-for="Input.Email" class="text-danger"></span>
+											</div>
+										</div>
+
+										<div class="col-12">
+											<button type="submit" class="w-100 btn btn-lg btn-primary">Nouvel envoie</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<!-- Text -->
+						<div class="text-center mt-8">
+							<p>
+								Vous avez deja un compte ?
+								<a id="forgot-password" asp-page="./Login">Se connecter</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer class="mt-auto text-white-50 border-top footer text-muted">
+			<div class="container">
+				&copy; 2022  - <a style="color:#FFF;" asp-area="" asp-controller="Home" asp-action="index">NetAtlas</a>
+			</div>
+		</footer>
+	</div>
+	<!-- Scripts -->
+	<script src="assets/js/vendor.js"></script>
+	<script src="assets/js/template.js"></script>
+</body>
+</html>
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}
